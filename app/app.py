@@ -20,11 +20,11 @@ clf, vec = load_artifacts()
 
 st.set_page_config(page_title='AI Ticket Sorter', layout='centered')
 st.title('AI Ticket Sorter')
-st.write('Classify support tickets into categories')
+# st.write('Classify support tickets into categories')
 
 
 # mode = st.radio('Mode', ['Single ticket', 'Batch (CSV)'])
-mode = st.radio('Mode', ['Batch (CSV)'])
+# mode = st.radio('Mode', ['Batch (CSV)'])
 
 text = st.text_area('Paste ticket text here')
 # if mode == 'Single ticket':
@@ -44,7 +44,7 @@ else:
     pred = clf.predict(X)[0]
     proba = clf.predict_proba(X)[0]
     st.success(f'Prediction: **{pred}**')
-    st.write('Probabilities:')
+    # st.write('Probabilities:')
     classes = clf.classes_
     dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
     st.dataframe(dfp)
@@ -55,7 +55,7 @@ uploaded = st.file_uploader('Upload CSV with a `text` column', type=['csv'])
 if uploaded is not None:
     df = pd.read_csv(uploaded)
     st.success("✅ File uploaded successfully!")
-    st.write("Preview of data:", df.head())
+    # st.write("Preview of data:", df.head())
 
     # if 'text' not in df.columns:
     #     st.error('CSV must contain a `text` column')
