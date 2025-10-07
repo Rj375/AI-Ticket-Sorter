@@ -5,7 +5,7 @@ import pandas as pd
 from pathlib import Path
 
 
-ARTIFACTS = Path('/Users/rameshgiri/Desktop/ai-ticket-sorter/artifacts')
+ARTIFACTS = Path('artifacts')
 
 
 @st.cache_resource

@@ -7,7 +7,7 @@ import joblib
 
 
 # load cleaned data
-df = pd.read_csv('/Users/rameshgiri/Desktop/ai-ticket-sorter/data/tickets_clean.csv')
+df = pd.read_csv('data/tickets_clean.csv')
 X = df['text_clean']
 y = df['category']
 
@@ -37,5 +37,5 @@ print(confusion_matrix(y_test, y_pred))
 
 
 # save artifacts
-joblib.dump(clf, '/Users/rameshgiri/Desktop/ai-ticket-sorter/artifacts/model.pkl')
-joblib.dump(vectorizer, '/Users/rameshgiri/Desktop/ai-ticket-sorter/artifacts/vectorizer.pkl')
+joblib.dump(clf, 'artifacts/model.pkl')
+joblib.dump(vectorizer, 'artifacts/vectorizer.pkl')
