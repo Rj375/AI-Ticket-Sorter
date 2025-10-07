@@ -45,10 +45,10 @@ X = vec.transform([text_clean])
 pred = clf.predict(X)[0]
 # proba = clf.predict_proba(X)[0]
     # classes = clf.classes_
-if pred:
-    st.success(f'Prediction: **{pred}**')
+if not pred:
+    st.success(f'**{""}**')
 else:
-      st.success(f'**{""}**')
+     st.success(f'Prediction: **{pred}**') 
     # st.write('Probabilities:')
     # classes = clf.classes_
     # dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
