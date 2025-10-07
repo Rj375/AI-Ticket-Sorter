@@ -45,7 +45,7 @@ else:
     proba = clf.predict_proba(X)[0]
     st.success(f'Prediction: **{pred}**')
     # st.write('Probabilities:')
-    # classes = clf.classes_
+    classes = clf.classes_
     # dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
     # st.dataframe(dfp)
 
@@ -54,7 +54,7 @@ else:
 uploaded = st.file_uploader('Upload CSV with a `text` column', type=['csv'])
 if uploaded is not None:
     df = pd.read_csv(uploaded)
-    st.success("✅ File uploaded successfully!")
+    # st.success("✅ File uploaded successfully!")
     # st.write("Preview of data:", df.head())
 
     # if 'text' not in df.columns:
