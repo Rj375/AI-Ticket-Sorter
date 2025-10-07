@@ -43,7 +43,8 @@ else:
     X = vec.transform([text_clean])
     pred = clf.predict(X)[0]
     proba = clf.predict_proba(X)[0]
-    st.success(f'Prediction: **{pred}**')
+    classes = clf.classes_
+    st.success(f'Prediction: **{pred, classes}**')
     # st.write('Probabilities:')
     # classes = clf.classes_
     # dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
