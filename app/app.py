@@ -45,7 +45,10 @@ X = vec.transform([text_clean])
 pred = clf.predict(X)[0]
 proba = clf.predict_proba(X)[0]
     # classes = clf.classes_
-st.success(f'Prediction: **{pred}**')
+if pred:
+    st.success(f'Prediction: **{pred}**')
+else:
+      st.write("")
     # st.write('Probabilities:')
     # classes = clf.classes_
     # dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
@@ -64,9 +67,7 @@ st.success(f'Prediction: **{pred}**')
 # else:
         # import re
         # df['text_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
-        # df['tickets_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
         # X = vec.transform(df['text_clean'])
-        # X = vec.transform(df['tickets_clean'])
         # df['pred'] = clf.predict(X)
         # st.download_button('Download predictions', df.to_csv(index=False), file_name='predictions.csv')
         # st.dataframe(df.head(50))
