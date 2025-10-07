@@ -23,30 +23,31 @@ st.title('AI Ticket Sorter')
 st.write('Classify support tickets into categories')
 
 
-mode = st.radio('Mode', ['Single ticket', 'Batch (CSV)'])
+# mode = st.radio('Mode', ['Single ticket', 'Batch (CSV)'])
+mode = st.radio('Mode', ['Batch (CSV)'])
 
 text = st.text_area('Paste ticket text here')
-if mode == 'Single ticket':
-    if st.button('Predict'):
-        if not text.strip():
-            st.error('Please provide text')
-else:
+# if mode == 'Single ticket':
+#     if st.button('Predict'):
+#         if not text.strip():
+#             st.error('Please provide text')
+# else:
     # simple cleaning (must match train preprocess)
-    import re
-    def clean_text(s):
+import re
+def clean_text(s):
         s = str(s).lower()
         s = re.sub(r"[^a-z0-9\s]", "", s)
         s = re.sub(r"\s+", " ", s).strip()
         return s
-    text_clean = clean_text(text)
-    X = vec.transform([text_clean])
-    pred = clf.predict(X)[0]
-    proba = clf.predict_proba(X)[0]
-    st.success(f'Prediction: **{pred}**')
-    st.write('Probabilities:')
-    classes = clf.classes_
-    dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
-    st.dataframe(dfp)
+text_clean = clean_text(text)
+X = vec.transform([text_clean])
+pred = clf.predict(X)[0]
+proba = clf.predict_proba(X)[0]
+st.success(f'Prediction: **{pred}**')
+st.write('Probabilities:')
+classes = clf.classes_
+dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
+st.dataframe(dfp)
 
 
 
@@ -56,15 +57,15 @@ if uploaded is not None:
     st.success("✅ File uploaded successfully!")
     st.write("Preview of data:", df.head())
 
-    if 'text' not in df.columns:
-        st.error('CSV must contain a `text` column')
-    else:
-        import re
-        df['text_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
-        X = vec.transform(df['text_clean'])
-        df['pred'] = clf.predict(X)
-        st.download_button('Download predictions', df.to_csv(index=False), file_name='predictions.csv')
-        st.dataframe(df.head(50))
+    # if 'text' not in df.columns:
+    #     st.error('CSV must contain a `text` column')
+    # else:
+    #     import re
+    #     df['text_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
+    #     X = vec.transform(df['text_clean'])
+    #     df['pred'] = clf.predict(X)
+    #     st.download_button('Download predictions', df.to_csv(index=False), file_name='predictions.csv')
+    #     st.dataframe(df.head(50))
 else:
     st.warning("⚠️ Please upload a CSV file to continue.")
 
