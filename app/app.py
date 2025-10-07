@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 ARTIFACTS = Path('artifacts')
-
+df = pd.read_csv("data/tickets_clean.csv")
 
 @st.cache_resource
 def load_artifacts():
@@ -55,19 +55,19 @@ st.success(f'Prediction: **{pred}**')
 
 # uploaded = st.file_uploader('Upload CSV with a `text` column', type=['csv'])
 # if uploaded is not None:
-df = pd.read_csv("data/tickets_clean.csv")
+
 #     st.success("✅ File uploaded successfully!")
 #     st.write("Preview of data:", df.head())
 
-if 'text' not in df.columns:
-        st.error('CSV must contain a `text` column')
-else:
-        import re
+# if 'text' not in df.columns:
+        # st.error('CSV must contain a `text` column')
+# else:
+        # import re
         # df['text_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
-        df['tickets_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
+        # df['tickets_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
         # X = vec.transform(df['text_clean'])
-        X = vec.transform(df['tickets_clean'])
-        df['pred'] = clf.predict(X)
+        # X = vec.transform(df['tickets_clean'])
+        # df['pred'] = clf.predict(X)
         # st.download_button('Download predictions', df.to_csv(index=False), file_name='predictions.csv')
         # st.dataframe(df.head(50))
 # else:
