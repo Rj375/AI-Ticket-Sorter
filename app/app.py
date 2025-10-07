@@ -43,12 +43,12 @@ def clean_text(s):
 text_clean = clean_text(text)
 X = vec.transform([text_clean])
 pred = clf.predict(X)[0]
-proba = clf.predict_proba(X)[0]
+# proba = clf.predict_proba(X)[0]
     # classes = clf.classes_
 if pred:
     st.success(f'Prediction: **{pred}**')
 else:
-      st.write("")
+      st.success(f'**{""}**')
     # st.write('Probabilities:')
     # classes = clf.classes_
     # dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
