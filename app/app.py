@@ -28,26 +28,26 @@ mode = st.radio('Mode', ['Batch (CSV)'])
 
 text = st.text_area('Paste ticket text here')
 # if mode == 'Single ticket':
-#     if st.button('Predict'):
-#         if not text.strip():
-#             st.error('Please provide text')
-# else:
+if st.button('Predict'):
+    if not text.strip():
+        st.error('Please provide text')
+else:
     # simple cleaning (must match train preprocess)
-import re
-def clean_text(s):
+    import re
+    def clean_text(s):
         s = str(s).lower()
         s = re.sub(r"[^a-z0-9\s]", "", s)
         s = re.sub(r"\s+", " ", s).strip()
         return s
-text_clean = clean_text(text)
-X = vec.transform([text_clean])
-pred = clf.predict(X)[0]
-proba = clf.predict_proba(X)[0]
-st.success(f'Prediction: **{pred}**')
-st.write('Probabilities:')
-classes = clf.classes_
-dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
-st.dataframe(dfp)
+    text_clean = clean_text(text)
+    X = vec.transform([text_clean])
+    pred = clf.predict(X)[0]
+    proba = clf.predict_proba(X)[0]
+    st.success(f'Prediction: **{pred}**')
+    st.write('Probabilities:')
+    classes = clf.classes_
+    dfp = pd.DataFrame({'category': classes, 'prob': proba}).sort_values('prob', ascending=False)
+    st.dataframe(dfp)
 
 
 
