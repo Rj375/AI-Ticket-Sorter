@@ -30,8 +30,7 @@ text = st.text_area('Paste ticket text here')
 # if mode == 'Single ticket':
 # if st.button('Predict'):
 st.button('Predict')
-if not text.strip():
-        st.error('Please provide text')
+
 # else:
     # simple cleaning (must match train preprocess)
 import re
@@ -45,8 +44,8 @@ X = vec.transform([text_clean])
 pred = clf.predict(X)[0]
 # proba = clf.predict_proba(X)[0]
     # classes = clf.classes_
-if not pred:
-    st.success(f'**{""}**')
+if not text.strip():
+    st.error('Please provide text')
 else:
      st.success(f'Prediction: **{pred}**') 
     # st.write('Probabilities:')
