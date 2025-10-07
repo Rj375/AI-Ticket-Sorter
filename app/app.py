@@ -51,22 +51,22 @@ else:
 
 
 
-# uploaded = st.file_uploader('Upload CSV with a `text` column', type=['csv'])
-# if uploaded is not None:
-#     df = pd.read_csv(uploaded)
-#     st.success("✅ File uploaded successfully!")
-#     st.write("Preview of data:", df.head())
+uploaded = st.file_uploader('Upload CSV with a `text` column', type=['csv'])
+if uploaded is not None:
+    df = pd.read_csv(uploaded)
+    st.success("✅ File uploaded successfully!")
+    # st.write("Preview of data:", df.head())
 
-#     if 'text' not in df.columns:
-#         st.error('CSV must contain a `text` column')
-#     else:
-#         import re
-#         df['text_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
-#         X = vec.transform(df['text_clean'])
-#         df['pred'] = clf.predict(X)
-#         st.download_button('Download predictions', df.to_csv(index=False), file_name='predictions.csv')
-#         st.dataframe(df.head(50))
-# else:
-#     st.warning("⚠️ Please upload a CSV file to continue.")
+    # if 'text' not in df.columns:
+    #     st.error('CSV must contain a `text` column')
+    # else:
+    #     import re
+    #     df['text_clean'] = df['text'].astype(str).apply(lambda s: re.sub(r"[^a-z0-9\s]", "", s.lower()))
+    #     X = vec.transform(df['text_clean'])
+    #     df['pred'] = clf.predict(X)
+    #     st.download_button('Download predictions', df.to_csv(index=False), file_name='predictions.csv')
+    #     st.dataframe(df.head(50))
+else:
+    st.warning("⚠️ Please upload a CSV file to continue.")
 
 
